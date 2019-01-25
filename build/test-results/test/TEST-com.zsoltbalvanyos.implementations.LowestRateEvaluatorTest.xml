@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zsoltbalvanyos.implementations.LowestRateEvaluatorTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2019-01-25T09:06:07" hostname="OVO3856MB" time="0.03">
+  <properties/>
+  <testcase name="totalOverspillsAmount" classname="com.zsoltbalvanyos.implementations.LowestRateEvaluatorTest" time="0.019"/>
+  <testcase name="emptyList" classname="com.zsoltbalvanyos.implementations.LowestRateEvaluatorTest" time="0.001"/>
+  <testcase name="offerIsDiscarded" classname="com.zsoltbalvanyos.implementations.LowestRateEvaluatorTest" time="0.008"/>
+  <testcase name="newOfferIncluded_MaxDropsOut" classname="com.zsoltbalvanyos.implementations.LowestRateEvaluatorTest" time="0.0"/>
+  <testcase name="totalIsLessThanAmount" classname="com.zsoltbalvanyos.implementations.LowestRateEvaluatorTest" time="0.0"/>
+  <testcase name="newOfferIncluded_MultipleDropsOut" classname="com.zsoltbalvanyos.implementations.LowestRateEvaluatorTest" time="0.001"/>
+  <testcase name="newOfferIncluded_NothingDropsOut" classname="com.zsoltbalvanyos.implementations.LowestRateEvaluatorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
