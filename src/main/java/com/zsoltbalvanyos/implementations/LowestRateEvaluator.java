@@ -1,11 +1,11 @@
 package com.zsoltbalvanyos.implementations;
 
+import com.zsoltbalvanyos.OfferOps;
 import com.zsoltbalvanyos.OfferEvaluator;
 import com.zsoltbalvanyos.domain.Model.*;
 import io.vavr.collection.List;
-import io.vavr.collection.Stream;
 
-public class LowestRateEvaluator implements OfferEvaluator {
+public class LowestRateEvaluator implements OfferEvaluator, OfferOps {
 
     @Override
     public List<Offer> evaluate(RequestedAmount requestedAmount, Offer offer, List<Offer> offers) {
@@ -22,12 +22,5 @@ public class LowestRateEvaluator implements OfferEvaluator {
                 totalAmount(list) > requestedAmount.value ?
                     list :
                     list.prepend(o));
-    }
-
-    private double totalAmount(List<Offer> offers) {
-        return Stream.ofAll(offers)
-            .map(Offer::getAvailable)
-            .map(Available::getValue)
-            .fold(0.0, (a, b) -> a + b);
     }
 }

@@ -1,11 +1,12 @@
 package com.zsoltbalvanyos.implementations;
 
+import com.zsoltbalvanyos.OfferOps;
 import com.zsoltbalvanyos.PaymentCalculator;
 import com.zsoltbalvanyos.domain.Model.*;
 import io.vavr.collection.List;
 
 
-public class CompoundingInterestCalculator implements PaymentCalculator {
+public class CompoundingInterestCalculator implements PaymentCalculator, OfferOps {
     @Override
     public RepaymentDetails monthlyPayments(List<Offer> offers, int duration) {
         double monthlyPayment =
@@ -23,14 +24,8 @@ public class CompoundingInterestCalculator implements PaymentCalculator {
     }
 
     private Rate getRate(List<Offer> offers) {
-        double totalAmount =
-            offers
-                .map(Offer::getAvailable)
-                .map(Available::getValue)
-                .fold(0.0, (a, b) -> a + b);
-
         return new Rate(offers
-            .map(offer -> offer.available.value / totalAmount * offer.rate.value)
+            .map(offer -> offer.available.value / totalAmount(offers) * offer.rate.value)
             .fold(0.0, (a, b) -> a + b)
         );
     }

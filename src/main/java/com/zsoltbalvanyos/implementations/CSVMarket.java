@@ -1,5 +1,6 @@
 package com.zsoltbalvanyos.implementations;
 
+import com.zsoltbalvanyos.OfferOps;
 import com.zsoltbalvanyos.Market;
 import com.zsoltbalvanyos.OfferEvaluator;
 import com.zsoltbalvanyos.PaymentCalculator;
@@ -15,7 +16,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class CSVMarket implements Market {
+public class CSVMarket implements Market, OfferOps {
 
     final private static Logger logger = LogManager.getLogger(CSVMarket.class);
 
@@ -76,13 +77,5 @@ public class CSVMarket implements Market {
             sortedOffers
                 .dropRight(1)
                 .prepend(trimmedWorstOffer);
-    }
-
-
-    private double totalAmount(List<Offer> offers) {
-        return Stream.ofAll(offers)
-            .map(Offer::getAvailable)
-            .map(Available::getValue)
-            .fold(0.0, (a, b) -> a + b);
     }
 }

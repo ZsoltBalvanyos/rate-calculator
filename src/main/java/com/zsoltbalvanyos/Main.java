@@ -56,13 +56,16 @@ public class Main {
         PaymentCalculator calculator = new CompoundingInterestCalculator();
         Market market = new CSVMarket(evaluator, calculator);
         Option<RepaymentDetails> details = market.offerStream(location, amount, DURATION);
-        details.forEach(d -> {
+        if(details.isDefined()) {
+            RepaymentDetails d = details.get();
             StringBuilder sb = new StringBuilder();
             sb.append("Requested amount: £" + amount.value + "\n");
             sb.append("Rate: " + String.format("%.1f", d.rate.value * 100) + "%\n");
             sb.append("Monthly repayment: £" + String.format("%.2f", d.monthlyRepayment) + "\n");
             sb.append("Total repayment: £" + String.format("%.2f", d.totalRepayment));
             System.out.println(sb);
-        });
+        } else {
+            System.out.println("The operation has failed.");
+        }
     }
 }
